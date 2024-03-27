@@ -231,7 +231,7 @@ by_package <- cran %>% group_by(package)
 
 20. Usa la función `summarise` sobre  el elemento agrupado y calcula  el valor medio de la variable `size`. Observa el efecto del agrupamiento en el resultado.
 ```{r}
-by_package %>% summarise(avg_size = mean(size))
+by_package %>% summarise(mean(size))
 ```
 21. Para el agrupamiento creado calcula: 
 + . count = n()
@@ -292,17 +292,12 @@ top_counts_sorted <- cran %>%
 ```{r}
 
 
-
-
-
-
-
-
 ```
 25. Completa lo que se indica  usando `pipes`. Selecciona las columnas `ip_id, country, package, size` de `cran` y muestra el resultado por pantalla usando `print`. No es necesario almacenar.
 
 ```{r}
-
+cran %>% select(ip_id, country, package, size) %>%
+  print()
 
 
 ```
