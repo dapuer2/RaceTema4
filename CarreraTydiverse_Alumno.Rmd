@@ -274,12 +274,15 @@ top_counts <- cran %>%
 23. Repite el apartado anterior utilizando **pipes** para que finalmente el resultado se ordene, en orden descendente, según el número de descargas (`count`) y se almacene el la variable `top_counts_sorted`
 ```{r}
 
+threshold <- cran %>%
+  count(package) %>%
+  summarise(threshold = quantile(n, probs = 0.99)) %>%
+  pull(threshold)
 
-
-
-
-
-
+top_counts_sorted <- cran %>%
+  count(package) %>%
+  filter(n > threshold) %>%
+  arrange(desc(n))
 
 
 ```
