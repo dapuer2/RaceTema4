@@ -181,7 +181,9 @@ cran <- cran %>%
 ```
 11. Ordena `cran2` en orden ascendente según la variable `ip_id`.
 ```{r}
+cran2 <- cran %>% arrange(ip_id)
 
+  
 ```
 12. Ordena `cran2` en orden descendente según la variable `ip_id`.
 ```{r}
