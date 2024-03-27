@@ -328,8 +328,19 @@ cran %>% filter(size_mb <= 0.5) %>%
 `cran%>%...+geom_point()`
 
 ```{r}
+library(ggplot2)
 
-
+cran %>%
+  group_by(country) %>%
+  summarise(traffic = sum(size)) %>%
+  mutate(cumulative_traffic = cumsum(traffic),
+         total_traffic = sum(traffic),
+         threshold = 0.9 * total_traffic) %>%
+  filter(cumulative_traffic >= threshold) %>%
+  arrange(desc(traffic)) %>%
+  ggplot(aes(x = country, y = traffic)) +
+  geom_point() +
+  labs(x = "Código de país", y = "Tráfico generado")
 
 
 ```
